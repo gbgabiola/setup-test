@@ -1,4 +1,4 @@
-import Instructions from './Instructions';
+import Instructions from '../Instructions/Instructions';
 
 import './App.css';
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Instructions.css';
 import emoji from './emoji.svg';
 
 export default class Instructions extends Component {
