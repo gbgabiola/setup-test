@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Header } from './components/Header';
 import Body, { Body2, Body3 } from './components/Body';
+import Counter from './components/Counter';
 
 class App extends Component {
   add(a, b) {
@@ -25,7 +26,7 @@ class App extends Component {
         />
         <Body2 />
         <Body myFunc={this.add} text={'I am cool.'} text2={'I am cool2.'} />
-        <Body myFunc={this.add} text={'I am cool.'} text2={'I am cool2.'} />
+        <Counter />
       </div>
     );
   }
