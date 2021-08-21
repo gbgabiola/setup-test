@@ -3,7 +3,7 @@ import TodoForm from './TodoForm';
 
 /*
   [x] 1. Add todo
-  [ ] 2. Display todos
+  [x] 2. Display todos
   [ ] 3. Cross off todo
   [ ] 4. Show number of active todos
   [ ] 5. Filter all/active/complete todos
@@ -29,7 +29,9 @@ export default class TodoList extends Component {
     return (
       <div>
         <TodoForm onSubmit={this.addTodo} />
-        {JSON.stringify(this.state.todos)}
+        {this.state.todos.map(todo => (
+          <div key={todo.id}>{todo.text}</div>
+        ))}
       </div>
     );
   }
