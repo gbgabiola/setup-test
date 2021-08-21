@@ -7,7 +7,7 @@ import Todo from './Todo';
   [x] 2. Display todos
   [x] 3. Cross off todo
   [x] 4. Show number of active todos
-  [ ] 5. Filter all/active/complete todos
+  [x] 5. Filter all/active/complete todos
   [ ] 6. Delete todo
   [ ] 7. Delete all complete
         7.1 Only show if at least one is complete
@@ -18,6 +18,7 @@ import Todo from './Todo';
 export default class TodoList extends Component {
   state = {
     todos: [],
+    todosToShow: 'all',
   };
 
   addTodo = todo => {
@@ -43,11 +44,27 @@ export default class TodoList extends Component {
     });
   };
 
+  updateTodoToShow = str => {
+    this.setState({
+      todosToShow: str,
+    });
+  };
+
   render() {
+    let todos = [];
+
+    if (this.state.todosToShow === 'all') {
+      todos = this.state.todos;
+    } else if (this.state.todosToShow === 'active') {
+      todos = this.state.todos.filter(todo => !todo.isComplete);
+    } else if (this.state.todosToShow === 'completed') {
+      todos = this.state.todos.filter(todo => todo.isComplete);
+    }
+
     return (
       <div>
         <TodoForm onSubmit={this.addTodo} />
-        {this.state.todos.map(todo => (
+        {todos.map(todo => (
           <Todo
             key={todo.id}
             todo={todo}
@@ -57,6 +74,16 @@ export default class TodoList extends Component {
 
         <div>
           todos left: {this.state.todos.filter(todo => !todo.isComplete).length}
+        </div>
+
+        <div>
+          <button onClick={() => this.updateTodoToShow('all')}>All</button>
+          <button onClick={() => this.updateTodoToShow('active')}>
+            Active
+          </button>
+          <button onClick={() => this.updateTodoToShow('completed')}>
+            Complete
+          </button>
         </div>
       </div>
     );
