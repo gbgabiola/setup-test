@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Counter extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     count: 0,
-  //   };
-  // }
-
+export default class Counter extends Component {
   state = {
     count: 0,
   };
+
+  componentWillUnmount() {
+    console.log('unmounting...');
+  }
+
+  componentDidMount() {
+    console.log('mounting...');
+  }
 
   handleIncrement = () => {
     this.setState({
