@@ -19,6 +19,7 @@ export default class TodoList extends Component {
   state = {
     todos: [],
     todosToShow: 'all',
+    toggleAllComplete: true,
   };
 
   addTodo = todo => {
@@ -102,10 +103,26 @@ export default class TodoList extends Component {
         {this.state.todos.some(todo => todo.isComplete) ? (
           <div>
             <button onClick={this.deleteAllCompletedTodos}>
-              Remove All Complete Todos
+              Remove All Completed Todos
             </button>
           </div>
         ) : null}
+
+        <div>
+          <button
+            onClick={() =>
+              this.setState({
+                todos: this.state.todos.map(todo => ({
+                  ...todo,
+                  isComplete: this.state.toggleAllComplete,
+                })),
+                toggleAllComplete: !this.state.toggleAllComplete,
+              })
+            }
+          >
+            Toggle All Complete: {`${this.state.toggleAllComplete}`}
+          </button>
+        </div>
       </div>
     );
   }
