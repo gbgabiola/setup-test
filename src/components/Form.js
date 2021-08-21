@@ -8,36 +8,42 @@ export default class Form extends Component {
     title: 'Mr.',
   };
 
-  handleChange = (e, fieldName, isCheckbox) => {
+  handleChange = e => {
+    const isCheckbox = e.target.type === 'checkbox';
     this.setState({
-      [fieldName]: isCheckbox ? e.target.checked : e.target.value,
+      [e.target.name]: isCheckbox ? e.target.checked : e.target.value,
     });
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     console.log(this.state);
   };
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <input
+          name="name"
           value={this.state.name}
-          onChange={e => this.handleChange(e, 'name')}
+          onChange={this.handleChange}
         />
         <textarea
+          name="favoritePet"
           value={this.state.favoritePet}
-          onChange={e => this.handleChange(e, 'favoritePet')}
+          onChange={this.handleChange}
         />
         <input
           type="checkbox"
+          name="rememberMe"
           checked={this.state.rememberMe}
-          onChange={e => this.handleChange(e, 'rememberMe', true)}
+          onChange={this.handleChange}
         />
         <div>
           <select
+            name="title"
             value={this.state.title}
-            onChange={e => this.handleChange(e, 'title')}
+            onChange={this.handleChange}
           >
             <option>Mr.</option>
             <option>Miss.</option>
@@ -45,8 +51,8 @@ export default class Form extends Component {
             <option>Mrs.</option>
           </select>
         </div>
-        <button onClick={this.handleSubmit}>Submit</button>
-      </div>
+        <button>Submit</button>
+      </form>
     );
   }
 }
