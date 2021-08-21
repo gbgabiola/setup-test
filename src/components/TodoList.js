@@ -6,7 +6,7 @@ import Todo from './Todo';
   [x] 1. Add todo
   [x] 2. Display todos
   [x] 3. Cross off todo
-  [ ] 4. Show number of active todos
+  [x] 4. Show number of active todos
   [ ] 5. Filter all/active/complete todos
   [ ] 6. Delete todo
   [ ] 7. Delete all complete
@@ -54,6 +54,10 @@ export default class TodoList extends Component {
             toggleComplete={() => this.toggleComplete(todo.id)}
           />
         ))}
+
+        <div>
+          todos left: {this.state.todos.filter(todo => !todo.isComplete).length}
+        </div>
       </div>
     );
   }
