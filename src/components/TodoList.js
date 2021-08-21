@@ -8,7 +8,7 @@ import Todo from './Todo';
   [x] 3. Cross off todo
   [x] 4. Show number of active todos
   [x] 5. Filter all/active/complete todos
-  [ ] 6. Delete todo
+  [x] 6. Delete todo
   [ ] 7. Delete all complete
         7.1 Only show if at least one is complete
   [ ] 8. Toggle all on/off
@@ -50,6 +50,12 @@ export default class TodoList extends Component {
     });
   };
 
+  handleDeleteTodo = id => {
+    this.setState({
+      todos: this.state.todos.filter(todo => todo.id !== id),
+    });
+  };
+
   render() {
     let todos = [];
 
@@ -68,6 +74,7 @@ export default class TodoList extends Component {
           <Todo
             key={todo.id}
             todo={todo}
+            onDelete={() => this.handleDeleteTodo(todo.id)}
             toggleComplete={() => this.toggleComplete(todo.id)}
           />
         ))}
@@ -82,7 +89,7 @@ export default class TodoList extends Component {
             Active
           </button>
           <button onClick={() => this.updateTodoToShow('completed')}>
-            Complete
+            Completed
           </button>
         </div>
       </div>
