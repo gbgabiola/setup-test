@@ -23,14 +23,14 @@ export default class TodoList extends Component {
   };
 
   addTodo = todo => {
-    this.setState({
-      todos: [todo, ...this.state.todos],
-    });
+    this.setState(state => ({
+      todos: [todo, ...state.todos],
+    }));
   };
 
   toggleComplete = id => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
+    this.setState(state => ({
+      todos: state.todos.map(todo => {
         if (todo.id === id) {
           return {
             // id: todo.id,
@@ -42,7 +42,7 @@ export default class TodoList extends Component {
           return todo;
         }
       }),
-    });
+    }));
   };
 
   updateTodoToShow = str => {
@@ -52,15 +52,15 @@ export default class TodoList extends Component {
   };
 
   deleteTodo = id => {
-    this.setState({
-      todos: this.state.todos.filter(todo => todo.id !== id),
-    });
+    this.setState(state => ({
+      todos: state.todos.filter(todo => todo.id !== id),
+    }));
   };
 
   deleteAllCompletedTodos = () => {
-    this.setState({
-      todos: this.state.todos.filter(todo => !todo.isComplete),
-    });
+    this.setState(state => ({
+      todos: state.todos.filter(todo => !todo.isComplete),
+    }));
   };
 
   render() {
@@ -111,13 +111,14 @@ export default class TodoList extends Component {
         <div>
           <button
             onClick={() =>
-              this.setState({
-                todos: this.state.todos.map(todo => ({
+              // setState are asynchronous which give us the correct value of state
+              this.setState(state => ({
+                todos: state.todos.map(todo => ({
                   ...todo,
-                  isComplete: this.state.toggleAllComplete,
+                  isComplete: state.toggleAllComplete,
                 })),
-                toggleAllComplete: !this.state.toggleAllComplete,
-              })
+                toggleAllComplete: !state.toggleAllComplete,
+              }))
             }
           >
             Toggle All Complete: {`${this.state.toggleAllComplete}`}
