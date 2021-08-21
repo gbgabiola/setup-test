@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 export default class FetchRandomUser extends Component {
   state = {
     loading: true,
-    person: null,
+    people: [],
   };
 
   async componentDidMount() {
-    const url = 'https://api.randomuser.me/';
+    const url = 'https://api.randomuser.me/?results=5';
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ person: data.results[0], loading: false });
+    this.setState({ people: data.results, loading: false });
   }
 
   render() {
@@ -18,29 +18,34 @@ export default class FetchRandomUser extends Component {
       <div>loading...</div>;
     }
 
-    if (!this.state.person) {
-      return <div>Failed to fetch a person's data.</div>;
+    if (!this.state.people.length) {
+      return <div>Failed to fetch each person's data.</div>;
     }
 
-    return (
-      <div>
-        <div>
-          <div>{this.state.person.name.title}</div>
-          <div>{this.state.person.name.first}</div>
-          <div>{this.state.person.name.last}</div>
-          <img src={this.state.person.picture.large} alt="Profile" />
-        </div>
+    // // Using forEach
+    // const peopleJsx = [];
+    // this.state.people.forEach(person => {
+    //   peopleJsx.push(
+    //     <div key={person.login.uuid}>
+    //       <div>{person.name.title}</div>
+    //       <div>{person.name.first}</div>
+    //       <div>{person.name.last}</div>
+    //       <img src={person.picture.large} alt="Profile" />
+    //     </div>
+    //   );
+    // });
 
-        {/* {this.state.loading || !this.state.person ? (
-          <div>loading...</div>
-        ) : (
-          <div>
-            <div>{this.state.person.name.title}</div>
-            <div>{this.state.person.name.first}</div>
-            <div>{this.state.person.name.last}</div>
-            <img src={this.state.person.picture.large} alt="Profile" />
+    return (
+      // <div>{peopleJsx}</div>
+      <div>
+        {this.state.people.map(person => (
+          <div key={person.login.uuid}>
+            <div>{person.name.title}</div>
+            <div>{person.name.first}</div>
+            <div>{person.name.last}</div>
+            <img src={person.picture.large} alt="Profile" />
           </div>
-        )} */}
+        ))}
       </div>
     );
   }
