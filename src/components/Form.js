@@ -8,20 +8,10 @@ export default class Form extends Component {
     title: 'Mr.',
   };
 
-  handleChange = e => {
-    this.setState({ name: e.target.value });
-  };
-
-  handleChangeFavoritePet = e => {
-    this.setState({ favoritePet: e.target.value });
-  };
-
-  handleCheck = e => {
-    this.setState({ rememberMe: e.target.checked });
-  };
-
-  handleSelect = e => {
-    this.setState({ title: e.target.value });
+  handleChange = (e, fieldName, isCheckbox) => {
+    this.setState({
+      [fieldName]: isCheckbox ? e.target.checked : e.target.value,
+    });
   };
 
   handleSubmit = () => {
@@ -31,18 +21,24 @@ export default class Form extends Component {
   render() {
     return (
       <div>
-        <input value={this.state.name} onChange={this.handleChange} />
+        <input
+          value={this.state.name}
+          onChange={e => this.handleChange(e, 'name')}
+        />
         <textarea
           value={this.state.favoritePet}
-          onChange={this.handleChangeFavoritePet}
+          onChange={e => this.handleChange(e, 'favoritePet')}
         />
         <input
           type="checkbox"
           checked={this.state.rememberMe}
-          onChange={this.handleCheck}
+          onChange={e => this.handleChange(e, 'rememberMe', true)}
         />
         <div>
-          <select value={this.state.title} onChange={this.handleSelect}>
+          <select
+            value={this.state.title}
+            onChange={e => this.handleChange(e, 'title')}
+          >
             <option>Mr.</option>
             <option>Miss.</option>
             <option>Ms.</option>
