@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import Hello from './Hello';
+import { useEffect } from 'react';
 import { useForm } from './useForm';
 
 const App = () => {
@@ -9,20 +8,23 @@ const App = () => {
     firstName: '',
   });
 
-  const [showHello, setShowHello] = useState(true);
+  // const [showHello, setShowHello] = useState(true);
 
-  // useEffect(() => {
-  //   console.log('Render');
-  // }, [values.email, values.password]);
+  useEffect(() => {
+    const onMouseMove = e => {
+      console.log(e);
+    };
+    window.addEventListener('mousemove', onMouseMove);
 
-  // useEffect(() => {
-  //   console.log('Render');
-  // }, []);
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+    };
+  }, []);
 
   return (
     <div>
-      <button onClick={() => setShowHello(!showHello)}>Toggle</button>
-      {showHello && <Hello />}
+      {/* <button onClick={() => setShowHello(!showHello)}>Toggle</button> */}
+      {/* {showHello && <Hello />} */}
       <input
         name="email"
         value={values.email}
