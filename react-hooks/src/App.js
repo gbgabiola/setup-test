@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
+import { useFetch } from './useFetch';
 import { useForm } from './useForm';
 
 const App = () => {
@@ -8,29 +9,11 @@ const App = () => {
     firstName: '',
   });
 
-  // const [showHello, setShowHello] = useState(true);
-
-  // useEffect(() => {
-  //   const onMouseMove = e => {
-  //     console.log(e);
-  //   };
-  //   window.addEventListener('mousemove', onMouseMove);
-
-  //   return () => {
-  //     window.removeEventListener('mousemove', onMouseMove);
-  //   };
-  // }, []);
-
-  useEffect(() => {
-    console.log('mount1');
-  }, []);
-
-  useEffect(() => {
-    console.log('mount2');
-  }, []);
+  const { data, loading } = useFetch('http://numbersapi.com/43/trivia');
 
   return (
     <div>
+      <div>{loading ? 'loading...' : data}</div>
       {/* <button onClick={() => setShowHello(!showHello)}>Toggle</button> */}
       {/* {showHello && <Hello />} */}
       <input
