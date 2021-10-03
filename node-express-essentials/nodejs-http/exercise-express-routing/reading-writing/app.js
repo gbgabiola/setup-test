@@ -25,7 +25,9 @@ app.put('/products', function (req, res) {
 });
 
 app.delete('/products/:id', function (req, res) {
-  // implement
+  const deleteProduct = products.find(product => product.id === +req.params.id);
+  products = products.filter(product => product.id !== +req.params.id);
+  res.json(deleteProduct);
 });
 
 app.get('/products', (req, res) => {
