@@ -13,7 +13,15 @@ app.post('/products', function (req, res) {
 });
 
 app.put('/products', function (req, res) {
-  // implement
+  let updateProduct;
+  products = products.map(product => {
+    if (product.id === req.body.id) {
+      updateProduct = { ...product, ...req.body };
+      return updateProduct;
+    }
+    return product;
+  });
+  res.json(updateProduct);
 });
 
 app.delete('/products/:id', function (req, res) {
