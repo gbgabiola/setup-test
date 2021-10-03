@@ -6,32 +6,31 @@ app.use(express.json());
 
 let products = [];
 
-app.post('/products', function (req, res) {
-  const newProduct = { ...req.body, id: products.length + 1 };
-  products = [...products, newProduct];
-  res.json(newProduct);
-});
-
-app.put('/products', function (req, res) {
-  let updateProduct;
-  products = products.map(product => {
-    if (product.id === req.body.id) {
-      updateProduct = { ...product, ...req.body };
-      return updateProduct;
-    }
-    return product;
+app
+  .route('/products')
+  .get((req, res) => {
+    res.json(products);
+  })
+  .post((req, res) => {
+    const newProduct = { ...req.body, id: products.length + 1 };
+    products = [...products, newProduct];
+    res.json(newProduct);
+  })
+  .put((req, res) => {
+    let updateProduct;
+    products = products.map(product => {
+      if (product.id === req.body.id) {
+        updateProduct = { ...product, ...req.body };
+        return updateProduct;
+      }
+      return product;
+    });
+    res.json(updateProduct);
+  })
+  .delete((req, res) => {
+    const deleteProduct = products.find(product => product.id === +req.body.id);
+    products = products.filter(product => product.id !== +req.body.id);
+    res.json(deleteProduct);
   });
-  res.json(updateProduct);
-});
-
-app.delete('/products/:id', function (req, res) {
-  const deleteProduct = products.find(product => product.id === +req.params.id);
-  products = products.filter(product => product.id !== +req.params.id);
-  res.json(deleteProduct);
-});
-
-app.get('/products', (req, res) => {
-  res.json(products);
-});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
