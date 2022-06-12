@@ -4,6 +4,7 @@
 
 - [WSL Ubuntu](#wsl-ubuntu)
 - [MacBook Pro M1](#macbook-pro-m1)
+- [Dell Windows 10](#dell-windows-10)
 
 
 ## WSL Ubuntu
@@ -13,6 +14,12 @@
 
 
 ## MacBook Pro M1
+
+- ...
+- ...
+
+
+## Dell Windows 10
 
 - ...
 - ...
