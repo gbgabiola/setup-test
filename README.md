@@ -23,3 +23,4 @@
 
 - ...
 - Test using auto-launching ssh-agent on Git for Windows
+- Test gpg
