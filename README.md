@@ -24,3 +24,4 @@
 - ...
 - Test using auto-launching ssh-agent on Git for Windows
 - Update the test for gpg
+- Test ssh and gpg on 2022/12/15 
