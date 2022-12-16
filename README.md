@@ -26,3 +26,4 @@
 - Update the test for gpg
 - Test ssh and gpg on 2022/12/15
 - Fix the issue with gpg in WSL
+- Test SSH and GPG again 2022/12/16
