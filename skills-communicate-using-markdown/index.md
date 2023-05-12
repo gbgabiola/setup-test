@@ -3,3 +3,9 @@
 ###### This is an `<h6>` header, which is the smallest
 
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
+```js
+$ git init
+Initialized empty Git repository in /Users/gbgabiola/dev/yaktocat-cms/.git/
+```
+
