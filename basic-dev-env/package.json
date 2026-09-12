@@ -1,0 +1,35 @@
+{
+  "name": "basic-dev-env",
+  "version": "1.0.0",
+  "description": "Basic development enviroment with live server setup.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genesisgabiola/basic-dev-env.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "live-server",
+    "development",
+    "environment",
+    "setup"
+  ],
+  "author": "Genesis Gabiola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/genesisgabiola/basic-dev-env/issues"
+  },
+  "homepage": "https://github.com/genesisgabiola/basic-dev-env#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "live-server": "^1.2.1"
+  }
+}
